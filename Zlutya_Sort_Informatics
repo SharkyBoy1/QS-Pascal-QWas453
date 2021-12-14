@@ -1,0 +1,53 @@
+var a,b:array [1..100] of longint;
+n:longint;
+
+procedure Form;
+var i:longint;
+begin
+for i:=1 to n do read(a[i]);
+end;
+
+procedure Print;
+var i:longint;
+begin
+writeln; for i:=1 to n do write(a[i]:3)
+end;
+
+procedure Zlutya(F1,L1,L2:longint);
+var i,j,k:longint;
+
+procedure Idk (var ind:longint);
+begin
+b[k]:=a[ind];ind:=ind+1;k:=k+1
+end;
+
+begin
+i:=F1; j:=L1+1; k:=F1;
+while k<=L2 do
+if i>L1 then Idk(j)
+else if j>L2 then Idk(i)
+else if a[i]<a[j] then Idk(i)
+else Idk(j);
+for k:=F1 to L2 do a[k]:=b[k];
+end;
+
+procedure sortsl(FI,LI:byte);
+var temp:longint;
+begin
+if LI>FI then
+begin
+temp:=(FI+LI) div 2;
+sortsl(FI,temp);
+sortsl(temp+1,LI);
+Zlutya(FI,temp,LI)
+end;
+end;
+
+begin
+readln(n);
+Randomize;
+Form;
+sortsl(1,n);
+Writeln;
+Print;
+end.
