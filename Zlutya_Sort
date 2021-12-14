@@ -1,0 +1,43 @@
+var a,b:array [1..100] of integer;
+n:byte;
+procedure form;
+var i:byte;
+begin
+randomize; for i:=1 to n do a[i]:=random(100)
+end;
+procedure viv;
+var i:byte;
+begin
+writeln; for i:=1 to n do write(a[i]:3)
+end;
+procedure sliv(I_p1,I_k1,I_k2:integer);
+var i,j,k:byte;
+procedure zan (var ind: byte);
+begin
+b[k]:=a[ind];ind:=ind+1;k:=k+1
+end;
+begin
+i:=I_p1; j:=I_k1+1; k:=I_p1;
+while k<=I_k2 do
+if i>I_k1 then zan(j)
+else if j>I_k2 then zan(i)
+else if a[i]<a[j] then zan(i)
+else zan(j);
+for k:=I_p1 to I_k2 do a[k]:=b[k];
+end;
+procedure sortsl(Ip,Ik:byte);
+var r:byte;
+begin
+if Ik>Ip then
+begin
+r:=(Ip+Ik) div 2;
+sortsl(Ip,r);
+sortsl(r+1,Ik);
+sliv(Ip,r,Ik)
+end;
+end;
+begin
+writeln('n'); readln(n);
+randomize; form; viv;
+sortsl(1,n); viv
+end.
