@@ -1,0 +1,28 @@
+var n,m,l,i:longint;
+f:boolean;
+k:array[1..100] of longint;
+
+procedure Rdd();
+Begin
+m:=n;
+l:=1;
+f:=true;
+while m>0 do
+Begin
+k[l]:=m mod 10;
+m:=m-k[l];
+m:=m div 10;
+l:=l+1;
+end;
+l:=l-1;
+for i:=1 to l-1 do if k[i]=<k[i+1] then f:=false;
+n:=n+1;
+end;
+
+Begin
+read(n);
+writeln;
+f:=false;
+While f=false do Rdd();
+write(n-1);
+end.
