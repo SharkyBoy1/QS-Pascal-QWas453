@@ -1,0 +1,79 @@
+var a:array[1..100,1..100] of integer;
+a1:array[1..100,1..100] of integer;
+n,m,i,j:integer;
+
+Procedure Form;
+Begin
+for i:=1 to n do for j:=1 to m do a[i,j]:=random(25)+10;
+end;
+
+Procedure Print1;
+Begin
+for i:=1 to n do
+ Begin
+ writeln;
+ for j:=1 to m do write(a1[i,j],' ');
+ end;
+end;
+
+Procedure Print;
+Begin
+for i:=1 to n do
+ Begin
+ writeln;
+ for j:=1 to m do write(a[i,j],' ');
+ end;
+end;
+
+Procedure Lines;
+Begin
+a1[1,1]:=a[1,1];
+for i:=2 to n do a1[i,1]:=a1[i-1,1]+a[i,1];
+for j:=2 to m do a1[1,j]:=a1[1,j-1]+a[1,j];
+end;
+
+Procedure FindWay;
+var p:boolean;
+Begin
+i:=2;
+j:=2;
+for i:=2 to n do
+ Begin
+ for j:=2 to m do
+  Begin
+  p:=false;
+  if (i=n) and (j=m) then
+   Begin
+   if a[i,j]+a1[i,j-1]>a[i,j]+a1[i-1,j] then Begin a1[i,j]:=a[i,j]+a1[i,j-1]; p:=true; end
+   else Begin a1[i,j]:=a[i,j]+a1[i-1,j]; p:=true; end;
+   writeln;
+   writeln(a1[i,j],' ',i,' ',j);
+   end;
+  if (i=n) and (p=false) then Begin a1[i,j]:=a[i,j]+a1[i,j-1]; p:=true; end;
+  if (j=m) and (p=false) then Begin a1[i,j]:=a[i,j]+a1[i-1,j]; p:=true; end;
+  if (a[i,j]+a1[i,j-1]>a[i,j]+a1[i-1,j]) and (p=false) then Begin a1[i,j]:=a[i,j]+a1[i,j-1]; p:=true; end
+  else Begin a1[i,j]:=a[i,j]+a1[i-1,j]; p:=true; end;
+  end;
+ end;
+end;
+
+Procedure FindWay1;
+begin
+i:=1;
+j:=1;
+while (i<>n) and (j<>m) do
+Begin
+end; 
+end;
+
+Begin
+Randomize;
+readln(n,m);
+Form;
+Print;
+writeln;
+Lines;
+FindWay;
+Print1;
+FindWay1;
+end.
