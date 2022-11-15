@@ -1,0 +1,22 @@
+var a:array [1..100] of integer;
+b:array [1..100] of integer;
+c:array [1..101,1..101] of integer;
+n,m,g,i,j:integer;
+
+Begin
+read(n);
+for i:=1 to n do read(a[i]);
+read(m);
+for i:=1 to m do read(b[i]);
+for i:=1 to n+1 do for j:=1 to m+1 do if (i=1) or (j=1) then c[i,j]:=0;
+for i:=2 to n+1 do
+for j:=2 to m+1 do
+Begin
+if a[i-1]=b[j-1] then c[i,j]:=c[i-1,j-1]+1
+else if c[i-1,j]>c[i,j-1] then c[i,j]:=c[i-1,j] else c[i,j]:=c[i,j-1];
+end;
+write(c[n+1,m+1]); 
+Begin
+
+end;
+end.
