@@ -1,0 +1,46 @@
+uses graph,crt;
+Var a:array [1..128] of byte;
+i,n:byte;
+DriverVar,ModeVar:integer;
+
+Procedure Viv;
+var i: byte;
+begin
+Writeln;
+SetFillStyle(1,15);
+For i:=1 to n do bar(0,i*10-10,a[i]*10,i*10);
+end;
+
+Procedure Bubble;
+var i,m,k: byte;
+r:integer;
+f:boolean;
+begin
+m:=n;
+f:=true;
+while f do
+begin
+f:=false;
+for i:=1 to m-1 do
+if a[i]> a[i+1] then
+begin
+f:=true;
+r:=a[i];
+a[i]:=a[i+1];
+a[i+1]:=r
+end;
+m:=m-1;
+end
+end;
+
+Begin
+DriverVar:=Detect; InitGraph(DriverVar,Modevar,'');
+n:=96;
+Randomize;
+For i:=1 to n do a[i]:=Random(128);
+Viv;
+readkey;
+Bubble;
+for i:=1 to n do write(a[i],' ');
+readkey;
+End.
