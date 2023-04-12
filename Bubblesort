@@ -1,0 +1,40 @@
+
+Var
+  a:array [1..100] of integer;
+  n: byte;
+Procedure Form;
+  var i: byte;
+  begin
+    Randomize;
+    For i:=1 to n do
+      a[i]:=Random(100)
+  end;
+Procedure Viv;
+  var i: byte;
+  begin
+    Writeln;
+    For i:=1 to n do
+      Write(a[i]:3)
+  end;
+Procedure Bubble;
+  var i,m,k: byte;
+      r:integer;
+      f:boolean;
+  begin
+    m:=n; f:=true;
+    while f do
+      begin
+        f:=false;
+        for i:=1 to m-1 do
+           if a[i]> a[i+1] then
+             begin
+               f:=true;r:=a[i];a[i]:=a[i+1];a[i+1]:=r
+             end;
+        m:=m-1;
+      end
+  end;
+Begin
+  Writeln('enter N');
+  Readln(n);
+  Form; Viv; Bubble; Viv
+End.
