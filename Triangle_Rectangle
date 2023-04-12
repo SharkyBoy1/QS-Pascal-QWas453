@@ -1,0 +1,49 @@
+uses crt,graph;
+var
+x1,x2,y1,y2,xo,yo,xo1,yo1,i,r,DriverVar,Modevar:integer;
+
+Procedure Triangle(x,y:integer);
+begin
+for i:=x to y do
+begin
+cleardevice;
+setcolor(4);
+line(xo1-r,yo1+r,xo1+r,yo1+r);
+line(xo1+r,yo1+r,xo1+r,yo1);
+line(xo1+r,yo1,xo1-r,yo1);
+line(xo1-r,yo1,xo1-r,yo1+r);
+x1:=xo + round(r*sin(i*Pi/180));
+y1:=yo - round(r*cos(i*Pi/180));
+x2:=xo + round(r*sin((i+60)*Pi/180));
+y2:=yo - round(r*cos((i+60)*Pi/180));
+setcolor(15);
+line(xo,yo,x1,y1);
+line(x1,y1,x2,y2);
+line(x2,y2,xo,yo);
+delay(1);
+end;
+end;
+
+begin
+DriverVar:=Detect;
+InitGraph(DriverVar,Modevar,'');
+
+xo1:=640;yo1:=480;
+xo:=640; yo:=480; r:=120;
+Triangle(270,390);
+
+xo:=xo+r;
+Triangle(270,480);
+
+yo:=yo+r;
+Triangle(360,570);
+
+xo:=xo-r;
+Triangle(450,570);
+
+xo:=xo-r;
+Triangle(450,660);
+
+yo:=yo-r;
+Triangle(540,750);
+end.
